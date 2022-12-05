@@ -1,0 +1,37 @@
+﻿<Window x:Class="TextAnalyserApp.Authorization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextAnalyserApp"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="450" Width="440" MinHeight="450" MinWidth="400" MaxWidth="500" MaxHeight="500" Icon="/TextAnalyserApp;component/Img/Icon.png" WindowStartupLocation="CenterScreen">
+    <Grid Background="{StaticResource Main}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Авторизация</TextBlock>
+        
+        <WrapPanel Grid.Row="1" ItemWidth="200" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Margin="10">Логин:</TextBlock>
+            <TextBox x:Name="textBoxLogin" Margin="10" MaxLength="15" TabIndex="1"></TextBox>
+        </WrapPanel>
+        
+        <WrapPanel Grid.Row="2" ItemWidth="200" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Margin="10">Пароль</TextBlock>
+            <PasswordBox x:Name="passwordBox" Margin="10" MaxLength="15" TabIndex="2"></PasswordBox>
+            <TextBox x:Name="textBoxPassword" Margin="10" Visibility="Collapsed" MaxLength="15" TabIndex="2"></TextBox>
+            <CheckBox x:Name="checkBoxShowPassword" Margin="10" Checked="checkBoxShowPassword_Checked" Unchecked="checkBoxShowPassword_Unchecked" TabIndex="3">Показать пароль</CheckBox>
+        </WrapPanel>
+
+        <WrapPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="buttonLogin" Margin="10" Style="{StaticResource buttonAccent}" Background="{StaticResource Accent}" Click="buttonLogin_Click" TabIndex="4" IsDefault="True">Войти</Button>
+            <Button x:Name="buttonExit" Margin="10" Style="{StaticResource buttonAccent}" Background="{StaticResource Accent}" Click="buttonExit_Click" TabIndex="5" IsCancel="True">Выход</Button>
+        </WrapPanel>
+        <Button x:Name="buttonRegister" Grid.Row="4" Style="{StaticResource buttonAdditional}" Background="{StaticResource Additional}" Click="buttonRegister_Click" TabIndex="6">Зарегистрироваться</Button>
+    </Grid>
+</Window>

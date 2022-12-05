@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="TextAnalyserApp.UserControlMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TextAnalyserApp" d:DataContext="{d:DesignInstance Type=local:UserControlMain}"
+             mc:Ignorable="d" 
+             d:DesignHeight="580" d:DesignWidth="1100">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="{StaticResource Main}">
+            <WrapPanel Margin="15, 6, 50, 15" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button x:Name="buttonSelectionFile" Margin="0,0,10,0" Style="{StaticResource buttonAdditional}" Background="{StaticResource Additional}" Click="buttonSelectionFile_Click" TabIndex="6" >Выбор файла</Button>
+                <Button x:Name="buttonSave" Margin="0,0,10,0" Style="{StaticResource buttonAdditional}" Background="{StaticResource Additional}" Click="buttonSave_Click" TabIndex="3">Сохранить текст</Button>
+                <Button x:Name="buttonAnalyze" Margin="0,0,10,0" Style="{StaticResource buttonAccent}" Background="{StaticResource Accent}" Click="buttonAnalyze_Click" TabIndex="2" IsDefault="True">Проанализировать текст</Button>
+                <Button x:Name="buttonClear" Margin="0,0,10,0" Style="{StaticResource buttonAdditional}" Background="{StaticResource Additional}" Click="buttonClear_Click" TabIndex="5">Очистить текст</Button>
+                <Button x:Name="buttonExit" Style="{StaticResource buttonAccent}" Background="{StaticResource Accent}" Click="buttonExit_Click" TabIndex="4" IsCancel="True">Выход</Button>
+            </WrapPanel>
+            <Button x:Name="buttonAccount" Margin="15, 4, 15, 4" Height="40" Style="{StaticResource buttonMain}" Background="{StaticResource Main}" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{Binding AccountName}" Click="buttonAccount_Click" TabIndex="17" IsCancel="True" />
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.4*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="{StaticResource Additional}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" x:Name="textBlockVowels" Margin="10,10,0,0">Количество гласных:</TextBlock>
+                <TextBlock Grid.Row="1" x:Name="textBlockConsonants" Margin="10,10,0,0">Количество согласных:</TextBlock>
+                <TextBlock Grid.Row="2" x:Name="textBlockSymbols" Margin="10,10,0,0">Количество символов-цифр:</TextBlock>
+                <TextBlock Grid.Row="3" x:Name="textBlockPunctuationMarks" Margin="10,10,0,0">Количество знаков препинания:</TextBlock>
+                <TextBlock Grid.Row="4" x:Name="textBlockEnteredText" Margin="10,10,0,0">Введенный текст</TextBlock>
+                <TextBlock Grid.Row="5" x:Name="textBlockPathFile" Margin="10,0,0,0" VerticalAlignment="Center">Путь к файлу</TextBlock>
+            </Grid>
+
+            <Grid Grid.Column="1" Background="{StaticResource Accent}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" x:Name="textBlockOutPutVowels" Margin="10"></TextBlock>
+                <TextBlock Grid.Row="1" x:Name="textBlockOutPutConsonants" Margin="10"></TextBlock>
+                <TextBlock Grid.Row="2" x:Name="textBlockOutPutSymbols" Margin="10"></TextBlock>
+                <TextBlock Grid.Row="3" x:Name="textBlockOutPutPunctuationMarks" Margin="10"></TextBlock>
+                <TextBox Grid.Row="4" Margin="10, 10, 10, 20" VerticalScrollBarVisibility="Auto" TabIndex="1"></TextBox>
+                <TextBox Grid.Row="5" Height="30" Margin="10, 0, 10, 0" MaxHeight="60" VerticalAlignment="Center" TabIndex="7"></TextBox>
+            </Grid>
+
+            <Grid Grid.Column="2" Background="{StaticResource Additional}" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="0.9*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="0.05*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Column="1" Source="/TextAnalyserApp;component/Img/Image.png" Margin="38,6,0,6" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
+
+                <WrapPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                    <Button x:Name="buttonReference" Margin="0, 10, 0, 9.688" Style="{StaticResource buttonMain}" Background="{StaticResource Main}" Click="buttonReference_Click" TabIndex="8">Справка</Button>
+                    <Button x:Name="buttonOptions" Margin="0, 10, 0, 9.688" Style="{StaticResource buttonMain}" Background="{StaticResource Main}" Click="buttonOptions_Click" TabIndex="9">Настройки</Button>
+                </WrapPanel>
+
+
+                <WrapPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+                    <TextBlock x:Name="textBlockLanguages" Margin="10">Выбор языка:</TextBlock>
+                    <RadioButton x:Name="radioButtonRus" Margin="0,0,0,5" TabIndex="10">Русский</RadioButton>
+                    <RadioButton x:Name="radioButtonEng" Margin="0,0,0,5" TabIndex="11">Английский</RadioButton>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
+                    <TextBlock x:Name="textBlockUnnecessary" Margin="10">Выбор ненужных полей:</TextBlock>
+                    <CheckBox x:Name="checkBoxVowels" Margin="0,0,0,5" TabIndex="12">Количество гласных</CheckBox>
+                    <CheckBox x:Name="checkBoxConsonants" Margin="0,0,0,5" TabIndex="13">Количество согласных</CheckBox>
+                    <CheckBox x:Name="checkBoxSymbols" Margin="0,0,0,5" TabIndex="14">Количество символов-цифр</CheckBox>
+                    <CheckBox x:Name="checkBoxPunctuationMarks" Margin="0,0,0,5" TabIndex="15">Количество знаков препинания</CheckBox>
+                </WrapPanel>
+
+                <Button Grid.Row="4" Grid.Column="1" x:Name="buttonApply" Margin="0, 10, 0, 9.688" Style="{StaticResource buttonAccent}" Background="{StaticResource Accent}" HorizontalAlignment="Left" Click="buttonApply_Click" TabIndex="16">Применить выбранное</Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
