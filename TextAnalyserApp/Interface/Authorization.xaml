@@ -17,15 +17,15 @@
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Авторизация</TextBlock>
         
         <WrapPanel Grid.Row="1" ItemWidth="200" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Margin="10">Логин:</TextBlock>
-            <TextBox x:Name="textBoxLogin" Margin="10" MaxLength="15" TabIndex="1"></TextBox>
+            <TextBlock Margin="10" >Логин:</TextBlock>
+            <TextBox x:Name="textBoxLogin" Margin="10" MaxLength="15" TextChanged="textBoxLogin_TextChanged" TabIndex="1"></TextBox>
         </WrapPanel>
         
         <WrapPanel Grid.Row="2" ItemWidth="200" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Margin="10">Пароль</TextBlock>
-            <PasswordBox x:Name="passwordBox" Margin="10" MaxLength="15" TabIndex="2"></PasswordBox>
+            <PasswordBox x:Name="passwordBox" Margin="10" MaxLength="15" IsEnabled="False" TabIndex="2"></PasswordBox>
             <TextBox x:Name="textBoxPassword" Margin="10" Visibility="Collapsed" MaxLength="15" TabIndex="2"></TextBox>
-            <CheckBox x:Name="checkBoxShowPassword" Margin="10" Checked="checkBoxShowPassword_Checked" Unchecked="checkBoxShowPassword_Unchecked" TabIndex="3">Показать пароль</CheckBox>
+            <CheckBox x:Name="checkBoxShowPassword" Margin="10" IsEnabled="False" Checked="checkBoxShowPassword_Checked" Unchecked="checkBoxShowPassword_Unchecked" TabIndex="3">Показать пароль</CheckBox>
         </WrapPanel>
 
         <WrapPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">

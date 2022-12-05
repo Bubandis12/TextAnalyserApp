@@ -23,6 +23,20 @@ namespace TextAnalyserApp
             InitializeComponent();
         }
 
+        private void textBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (textBoxLogin.Text != "")
+            {
+            passwordBox.IsEnabled = true;
+            checkBoxShowPassword.IsEnabled = true;
+            }
+            else
+            {
+                passwordBox.IsEnabled = false;
+                checkBoxShowPassword.IsEnabled = false;
+            }
+        }
+
         /// <summary>
         /// при установки влажка passwordBox скрывается, а textBoxPassword становится видимым
         /// </summary>
@@ -59,9 +73,9 @@ namespace TextAnalyserApp
             {
                 error = 0;
                 string accountName = textBoxLogin.Text;
-                string position = "Администратор";
+                string role = "Администратор";
                 MessageBox.Show("Авторизация прошла успешно.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-                Administrator administrator = new Administrator(accountName, position);
+                Administrator administrator = new Administrator(accountName, role);
                 administrator.Show();
                 Close();
             }
@@ -69,9 +83,9 @@ namespace TextAnalyserApp
             {
                 error = 0;
                 string accountName = textBoxLogin.Text;
-                string position = "Менеджер";
+                string role = "Менеджер";
                 MessageBox.Show("Авторизация прошла успешно.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-                Manager manager = new Manager(accountName, position);
+                Manager manager = new Manager(accountName, role);
                 manager.Show();
                 Close();
             } 

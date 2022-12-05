@@ -38,16 +38,16 @@ namespace TextAnalyserApp
                 }
             }
         }
-        private string textPosition;
-        public string PositionName
+        private string textRole;
+        public string RoleName
         {
             get
             {
-                return textPosition;
+                return textRole;
             }
             set
             {
-                textPosition = value;
+                textRole = value;
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("r"));
@@ -122,7 +122,7 @@ namespace TextAnalyserApp
                 buttonAnalyze.Content = "Проанализировать текст";
                 buttonClear.Content = "Очистить текст";
                 buttonExit.Content = "Выход";
-                buttonAccount.Content = "Пользователь: " + AccountName + "\nДолжность: " + PositionName;
+                buttonAccount.Content = "Логин: " + AccountName + "\nРоль: " + RoleName;
                 textBlockVowels.Text = "Количество гласных:";
                 textBlockConsonants.Text = "Количество согласных:";
                 textBlockSymbols.Text = "Количество символов-цифр:";
@@ -148,7 +148,7 @@ namespace TextAnalyserApp
                 buttonAnalyze.Content = "Analyze text";
                 buttonClear.Content = "Clear text";
                 buttonExit.Content = "Exit";
-                buttonAccount.Content = "User: " + AccountName + "\nPosition: " + PositionName;
+                buttonAccount.Content = "Login: " + AccountName + "\nRole: " + RoleName;
                 textBlockVowels.Text = "Number of vowels:";
                 textBlockConsonants.Text = "Number of consonants:";
                 textBlockSymbols.Text = "Number of symbols:";

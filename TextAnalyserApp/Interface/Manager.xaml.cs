@@ -19,14 +19,14 @@ namespace TextAnalyserApp
     /// </summary>
     public partial class Manager : Window
     {
-        public Manager(string accountName, string position)
+        public Manager(string accountName, string role)
         {
             InitializeComponent();
 
             //передается имя и должность пользователя
-            userControlMain.buttonAccount.Content = "Пользователь: " + accountName + "\nДолжность: " + position;
+            userControlMain.buttonAccount.Content = "Логин: " + accountName + "\nРоль: " + role;
             userControlMain.AccountName = accountName;
-            userControlMain.PositionName = position;
+            userControlMain.RoleName = role;
         }
     }
 }
