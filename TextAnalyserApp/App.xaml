@@ -7,7 +7,11 @@
         <SolidColorBrush x:Key="Main" Color="#FF8F7070"/>
         <SolidColorBrush x:Key="Additional" Color="#FF83CB2D"/>
         <SolidColorBrush x:Key="Accent" Color="#FF16B2B9"/>
-        
+        <SolidColorBrush x:Key="IsMouseOverMain" Color="#FF949091"/>
+        <SolidColorBrush x:Key="IsMouseOverAdditional" Color="#FF88EB4E"/>
+        <SolidColorBrush x:Key="IsMouseOverAccent" Color="#FF1BD2DA"/>
+        <SolidColorBrush x:Key="NotEnabledAccent" Color="#FF408C8F"/>
+
         <Style x:Key="buttonBased" TargetType="Button">
             <Setter Property="Width" Value="160"/>
             <Setter Property="Height" Value="19.96"/>
@@ -22,7 +26,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" TargetName="border" Value="#FF949091" />
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource IsMouseOverMain}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -39,7 +43,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" TargetName="border" Value="#FF88EB4E" />
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource IsMouseOverAdditional}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -56,8 +60,32 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" TargetName="border" Value="#FF1BD2DA" />
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource IsMouseOverAccent}" />
                             </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" BasedOn="{StaticResource buttonBased}" x:Key="buttonLogin">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource IsMouseOverAccent}" />
+                            </Trigger>
+                            <DataTrigger Binding="{Binding ElementName=textBoxLogin, Path=Text}" Value="">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource NotEnabledAccent}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=textBoxLogin, Path=Text}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>

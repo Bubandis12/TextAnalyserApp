@@ -23,52 +23,11 @@ namespace TextAnalyserApp
             InitializeComponent();
         }
 
-        private void textBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (textBoxLogin.Text != "")
-            {
-            passwordBox.IsEnabled = true;
-            checkBoxShowPassword.IsEnabled = true;
-            }
-            else
-            {
-                passwordBox.IsEnabled = false;
-                checkBoxShowPassword.IsEnabled = false;
-            }
-        }
-
-        /// <summary>
-        /// при установки влажка passwordBox скрывается, а textBoxPassword становится видимым
-        /// </summary>
-        private void checkBoxShowPassword_Checked(object sender, RoutedEventArgs e)
-        {
-            passwordBox.Visibility = Visibility.Collapsed;
-            textBoxPassword.Visibility = Visibility.Visible;
-
-            textBoxPassword.Text = passwordBox.Password.ToString();
-            textBoxPassword.Focus();
-        }
-
-        /// <summary>
-        /// при снятии влажка textBoxPassword скрывается, а passwordBox становится видимым
-        /// </summary>
-        private void checkBoxShowPassword_Unchecked(object sender, RoutedEventArgs e)
-        {
-            passwordBox.Visibility = Visibility.Visible;
-            textBoxPassword.Visibility = Visibility.Collapsed;
-
-            passwordBox.Password = textBoxPassword.Text;
-            passwordBox.Focus();
-        }
-
-        /// <summary>
-        /// при нажатии на кнопку передает переменную accountName, открывает окно Administrator или Manager и закрывает Authorization
-        /// </summary>
         int error = 0;
-        private async void buttonLogin_Click(object sender, RoutedEventArgs e)
+
+
+        private void Login()
         {
-            
-            //UserControlMain user = new UserControlMain("", position);
             if (textBoxLogin.Text == "Админ" & passwordBox.Password == "Админ" || textBoxPassword.Text == "Админ")
             {
                 error = 0;
@@ -88,25 +47,65 @@ namespace TextAnalyserApp
                 Manager manager = new Manager(accountName, role);
                 manager.Show();
                 Close();
-            } 
+            }
             else
             {
-                ++error;
-                MessageBox.Show($"Введен неверный логин или пароль. После еще {3 - error} некорректных попыток ввод логина и пароля будет заблокировано в течение 15 секунд", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                if (error >= 3)
-                {
-                    textBoxLogin.IsEnabled = false;
-                    passwordBox.IsEnabled = false;
-                    checkBoxShowPassword.IsEnabled = false;
-                    buttonLogin.IsHitTestVisible = false;
-                    await Task.Delay(15000);
-                    textBoxLogin.IsEnabled = true;
-                    passwordBox.IsEnabled = true;
-                    checkBoxShowPassword.IsEnabled = true;
-                    buttonLogin.IsHitTestVisible = true;
-                    error = 0;
-                }
+                Error();
             }
+        }
+
+        private async void Error()
+        {
+            ++error;
+            MessageBox.Show($"Введен неверный логин или пароль. После еще {3 - error} некорректных попыток ввод логина и пароля будет заблокировано в течение 15 секунд", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (error >= 3)
+            {
+                textBoxLogin.IsEnabled = false;
+                passwordBox.IsEnabled = false;
+                checkBoxShowPassword.IsEnabled = false;
+                buttonLogin.IsHitTestVisible = false;
+                await Task.Delay(15000);
+                textBoxLogin.IsEnabled = true;
+                passwordBox.IsEnabled = true;
+                checkBoxShowPassword.IsEnabled = true;
+                buttonLogin.IsHitTestVisible = true;
+                error = 0;
+            }
+        }
+
+        /// <summary>
+        /// при установке флажка в textBoxPassword передается значение из passwordBox
+        /// </summary>
+        private void checkBoxShowPassword_Checked(object sender, RoutedEventArgs e)
+        {
+
+            textBoxPassword.Text = passwordBox.Password.ToString();
+        }
+
+        /// <summary>
+        /// при снятии флажка в passwordBox передается значение из textBoxPassword
+        /// </summary>
+        private void checkBoxShowPassword_Unchecked(object sender, RoutedEventArgs e)
+        {
+            passwordBox.Password = textBoxPassword.Text;
+        }
+
+        /// <summary>
+        /// при нажатии на кнопку передает переменную accountName, открывает окно Administrator или Manager и закрывает Authorization
+        /// </summary>
+        private void buttonLogin_Click(object sender, RoutedEventArgs e)
+        {
+            if (passwordBox.Focus() & passwordBox.Password == "" & textBoxPassword.Text != "" || textBoxPassword.Focus() & textBoxPassword.Text == "" & passwordBox.Password != "")
+            {
+                passwordBox.Password = "";
+                textBoxPassword.Text = "";
+                Error();
+            }
+            else
+            {
+                Login();
+            }    
+            
         }
 
         private void buttonRegister_Click(object sender, RoutedEventArgs e)

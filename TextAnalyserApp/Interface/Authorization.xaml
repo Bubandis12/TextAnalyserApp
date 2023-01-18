@@ -6,6 +6,53 @@
         xmlns:local="clr-namespace:TextAnalyserApp"
         mc:Ignorable="d"
         Title="Авторизация" Height="450" Width="440" MinHeight="450" MinWidth="400" MaxWidth="500" MaxHeight="500" Icon="/TextAnalyserApp;component/Img/Icon.png" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        
+        <Style TargetType="PasswordBox">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=textBoxLogin, Path=Text}" Value="">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=textBoxLogin, Path=Text}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="True"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=checkBoxShowPassword, Path=IsChecked}" Value="True">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=checkBoxShowPassword, Path=IsChecked}" Value="False">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="textPassword">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=textBoxLogin, Path=Text}" Value="">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=textBoxLogin, Path=Text}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="True"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=checkBoxShowPassword, Path=IsChecked}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=checkBoxShowPassword, Path=IsChecked}" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=textBoxLogin, Path=Text}" Value="">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=textBoxLogin, Path=Text}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="True"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid Background="{StaticResource Main}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
@@ -18,18 +65,18 @@
         
         <WrapPanel Grid.Row="1" ItemWidth="200" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Margin="10" >Логин:</TextBlock>
-            <TextBox x:Name="textBoxLogin" Margin="10" MaxLength="15" TextChanged="textBoxLogin_TextChanged" TabIndex="1"></TextBox>
+            <TextBox x:Name="textBoxLogin" Margin="10" MaxLength="15" TabIndex="1"></TextBox>
         </WrapPanel>
         
         <WrapPanel Grid.Row="2" ItemWidth="200" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Margin="10">Пароль</TextBlock>
-            <PasswordBox x:Name="passwordBox" Margin="10" MaxLength="15" IsEnabled="False" TabIndex="2"></PasswordBox>
-            <TextBox x:Name="textBoxPassword" Margin="10" Visibility="Collapsed" MaxLength="15" TabIndex="2"></TextBox>
-            <CheckBox x:Name="checkBoxShowPassword" Margin="10" IsEnabled="False" Checked="checkBoxShowPassword_Checked" Unchecked="checkBoxShowPassword_Unchecked" TabIndex="3">Показать пароль</CheckBox>
+            <PasswordBox x:Name="passwordBox" Margin="10" MaxLength="15" TabIndex="2"></PasswordBox>
+            <TextBox x:Name="textBoxPassword" Margin="10" Style="{StaticResource textPassword}" MaxLength="15" TabIndex="2"></TextBox>
+            <CheckBox x:Name="checkBoxShowPassword" Margin="10" Checked="checkBoxShowPassword_Checked" Unchecked="checkBoxShowPassword_Unchecked" TabIndex="3">Показать пароль</CheckBox>
         </WrapPanel>
 
         <WrapPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="buttonLogin" Margin="10" Style="{StaticResource buttonAccent}" Background="{StaticResource Accent}" Click="buttonLogin_Click" TabIndex="4" IsDefault="True">Войти</Button>
+            <Button x:Name="buttonLogin" Margin="10" Style="{StaticResource buttonLogin}" Background="{StaticResource Accent}" Click="buttonLogin_Click" TabIndex="4" IsDefault="True">Войти</Button>
             <Button x:Name="buttonExit" Margin="10" Style="{StaticResource buttonAccent}" Background="{StaticResource Accent}" Click="buttonExit_Click" TabIndex="5" IsCancel="True">Выход</Button>
         </WrapPanel>
         <Button x:Name="buttonRegister" Grid.Row="4" Style="{StaticResource buttonAdditional}" Background="{StaticResource Additional}" Click="buttonRegister_Click" TabIndex="6">Зарегистрироваться</Button>
